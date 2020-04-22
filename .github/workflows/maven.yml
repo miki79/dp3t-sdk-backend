@@ -33,6 +33,11 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Echo current ref
       run: echo "${{ github.ref }}"
+    - name: SonarCloud Scan
+      run: mvn -B sonar:sonar --file dpppt-backend-sdk/pom.xml
+      env:
+        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     - name: Publish to GitHub Packages Apache Maven
       if: github.ref == 'refs/heads/develop'
       run: mvn deploy --file dpppt-backend-sdk/pom.xml -s $GITHUB_WORKSPACE/settings.xml
@@ -53,12 +58,3 @@ jobs:
         draft: false
         prerelease: false
         allowUpdates: true
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master #SonarCloud action https://github.com/SonarSource/sonarcloud-github-action
-      continue-on-error: true
-      env:
-        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: List2
-      run: ls -lR ./dpppt-backend-sdk
