@@ -65,4 +65,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: List2
-        run: ls -lr
+        run: ls -lR ./dpppt-backend-sdk
