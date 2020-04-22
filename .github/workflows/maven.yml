@@ -60,7 +60,7 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         with:
-          projectBaseDir: dpppt-backend-sdk
+          projectBaseDir: ./dpppt-backend-sdk
         env:
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
