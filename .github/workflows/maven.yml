@@ -53,16 +53,12 @@ jobs:
         draft: false
         prerelease: false
         allowUpdates: true
-  sonarcloud:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master #SonarCloud action https://github.com/SonarSource/sonarcloud-github-action
-        continue-on-error: true
-        env:
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: List2
-        run: ls -lR ./dpppt-backend-sdk
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master #SonarCloud action https://github.com/SonarSource/sonarcloud-github-action
+      continue-on-error: true
+      env:
+        SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: List2
+      run: ls -lR ./dpppt-backend-sdk
